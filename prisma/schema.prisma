@@ -11,30 +11,81 @@ datasource db {
 }
 
 model Customer {
-    email String @unique
-    id Int @default(autoincrement()) @id
-    name String
-    lastName String
-    phoneNumber String
-    locale String
-    elegibleCoupon Boolean @default(false)
-    coupon String
+  email          String  @unique
+  id             Int     @id @default(autoincrement())
+  name           String
+  lastName       String
+  phoneNumber    String
+  locale         String
+  elegibleCoupon Boolean @default(false)
+  coupon         String
+  Order          Order[]
 }
 
 model Hub {
-    id Int @default(autoincrement()) @id
-    name String
-    code String @unique
-    address String
-    addressNumber String
-    addressLocationLatitude Float
-    addressLocationLongitude Float
+  id                       Int     @id @default(autoincrement())
+  name                     String
+  code                     String  @unique
+  address                  String
+  addressNumber            String
+  addressLocationLatitude  Float
+  addressLocationLongitude Float
+  Order                    Order[]
 }
 
 model Product {
-    id Int @default(autoincrement()) @id
-    code String @unique
-    reservationType String
-    name String
-    description String
+  id              Int    @id @default(autoincrement())
+  code            String @unique
+  reservationType String
+  name            String
+  description     String
+  Order           Order? @relation(fields: [orderId], references: [id])
+  orderId         Int?
+}
+
+enum OrderBusinessCode {
+  Pizza
+}
+
+enum OrderType {
+  ASAP
+  SCHEDULED
+}
+
+enum OrderReceptionType {
+  PICKUP
+  HUB
+  DELIVER
+  IN_HUB
+}
+
+enum OrderStatus {
+  CONFIRMED
+  IN_PROCESS
+  IN_DELIVERY
+  CANCEL
+}
+
+enum OrderChannel {
+  IOS
+  HUB
+  ANDROID
+}
+
+model Order {
+  id            Int                @id @default(autoincrement())
+  businessCode  OrderBusinessCode
+  number        Int
+  type          OrderType
+  receptionType OrderReceptionType
+  status        OrderReceptionType
+  requestedDate DateTime
+  scheduledDate DateTime
+  confirmedDate DateTime
+  channel       OrderChannel
+  customer      Customer           @relation(fields: [customerId], references: [id])
+  hub           Hub                @relation(fields: [hubId], references: [id])
+  products      Product[]
+  customerId    Int
+  hubId         Int
 }

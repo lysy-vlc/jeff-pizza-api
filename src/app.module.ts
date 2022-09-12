@@ -8,6 +8,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo'
 import { DirectiveLocation, GraphQLDirective } from 'graphql'
 import { HubsModule } from './hubs/hubs.module'
 import { ProductsModule } from './products/products.module'
+import { OrdersModule } from './orders/orders.module'
 
 @Module({
   imports: [
@@ -25,7 +26,8 @@ import { ProductsModule } from './products/products.module'
       }
     }),
     HubsModule,
-    ProductsModule
+    ProductsModule,
+    OrdersModule
   ],
   controllers: [ AppController ],
   providers: [ AppService, PrismaService ]

@@ -33,6 +33,11 @@ type Product {
   description: String!
 }
 
+type Order {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
 type Query {
   customers: [Customer!]!
   customer(id: Int!): Customer!
@@ -40,6 +45,8 @@ type Query {
   hub(id: Int!): Hub!
   products: [Product!]!
   product(id: Int!): Product!
+  orders: [Order!]!
+  order(id: Int!): Order!
 }
 
 type Mutation {
@@ -52,6 +59,9 @@ type Mutation {
   createProduct(createProductInput: CreateProductInput!): Product!
   updateProduct(updateProductInput: UpdateProductInput!): Product!
   removeProduct(id: Int!): Product!
+  createOrder(createOrderInput: CreateOrderInput!): Order!
+  updateOrder(updateOrderInput: UpdateOrderInput!): Order!
+  removeOrder(id: Int!): Order!
 }
 
 input CreateCustomerInput {
@@ -106,5 +116,16 @@ input UpdateProductInput {
   reservationType: String
   name: String
   description: String
+  id: Int!
+}
+
+input CreateOrderInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateOrderInput {
+  """Example field (placeholder)"""
+  exampleField: Int
   id: Int!
 }
