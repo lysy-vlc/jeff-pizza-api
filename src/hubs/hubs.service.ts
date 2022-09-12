@@ -15,18 +15,31 @@ export class HubsService {
   }
 
   findAll() {
-    return `This action returns all hubs`
+    return this.prisma.hub.findMany()
   }
 
   findOne(id: number) {
-    return `This action returns a #${ id } hub`
+    return this.prisma.hub.findFirst({
+      where: {
+        id
+      }
+    })
   }
 
   update(id: number, updateHubInput: UpdateHubInput) {
-    return `This action updates a #${ id } hub`
+    return this.prisma.hub.update({
+      where: {
+        id
+      },
+      data: updateHubInput
+    })
   }
 
   remove(id: number) {
-    return `This action removes a #${ id } hub`
+    return this.prisma.hub.delete({
+      where: {
+        id
+      }
+    })
   }
 }

@@ -18,6 +18,7 @@ export class ProductsResolver {
 
   @Query(() => [ Product ], { name: 'products' })
   findAll() {
+    console.log('findall')
     return this.productsService.findAll()
   }
 

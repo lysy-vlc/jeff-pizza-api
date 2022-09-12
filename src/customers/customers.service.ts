@@ -1,33 +1,46 @@
 import { Injectable } from '@nestjs/common'
 import { CreateCustomerInput } from './dto/create-customer.input'
-import { UpdateCustomerInput } from './dto/update-customer.input'
 import { PrismaService } from '../prisma/prisma.service'
 import { Prisma } from '@prisma/client'
+import { UpdateCustomerInput } from './dto/update-customer.input'
 
 @Injectable()
 export class CustomersService {
-  constructor(private prismaService: PrismaService) {
+  constructor(private prisma: PrismaService) {
   }
 
   create(createCustomerInput: CreateCustomerInput) {
-    return this.prismaService.customer.create({
+    return this.prisma.customer.create({
       data: createCustomerInput
     })
   }
 
   findAll() {
-    return `This action returns all customers`
+    return this.prisma.customer.findMany()
   }
 
   findOne(id: number) {
-    return `This action returns a #${ id } customer`
+    return this.prisma.customer.findFirst({
+      where: {
+        id
+      }
+    })
   }
 
   update(id: number, updateCustomerInput: UpdateCustomerInput) {
-    return `This action updates a #${ id } customer`
+    return this.prisma.customer.update({
+      where: {
+        id
+      },
+      data: updateCustomerInput
+    })
   }
 
   remove(id: number) {
-    return `This action removes a #${ id } customer`
+    return this.prisma.customer.delete({
+      where: {
+        id
+      }
+    })
   }
 }

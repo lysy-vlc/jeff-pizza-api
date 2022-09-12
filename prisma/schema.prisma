@@ -30,3 +30,11 @@ model Hub {
     addressLocationLatitude Float
     addressLocationLongitude Float
 }
+
+model Product {
+    id Int @default(autoincrement()) @id
+    code String @unique
+    reservationType String
+    name String
+    description String
+}
