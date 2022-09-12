@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Hub" ALTER COLUMN "addressLocationLatitude" SET DATA TYPE DOUBLE PRECISION,
+ALTER COLUMN "addressLocationLongitude" SET DATA TYPE DOUBLE PRECISION;

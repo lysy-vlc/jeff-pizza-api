@@ -1,0 +1,110 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+directive @upper on FIELD_DEFINITION
+
+type Customer {
+  email: String!
+  id: ID!
+  name: String!
+  lastName: String!
+  phoneNumber: String!
+  locale: String!
+  elegibleCoupon: Boolean!
+  coupon: String!
+}
+
+type Hub {
+  id: ID!
+  name: String!
+  code: String!
+  address: String!
+  addressNumber: String!
+  addressLocationLatitude: Float!
+  addressLocationLongitude: Float!
+}
+
+type Product {
+  id: Int!
+  code: String!
+  reservationType: String!
+  name: String!
+  description: String!
+}
+
+type Query {
+  customers: [Customer!]!
+  customer(id: Int!): Customer!
+  hubs: [Hub!]!
+  hub(id: Int!): Hub!
+  products: [Product!]!
+  product(id: Int!): Product!
+}
+
+type Mutation {
+  createCustomer(createCustomerInput: CreateCustomerInput!): Customer!
+  updateCustomer(updateCustomerInput: UpdateCustomerInput!): Customer!
+  removeCustomer(id: Int!): Customer!
+  createHub(createHubInput: CreateHubInput!): Hub!
+  updateHub(updateHubInput: UpdateHubInput!): Hub!
+  removeHub(id: Int!): Hub!
+  createProduct(createProductInput: CreateProductInput!): Product!
+  updateProduct(updateProductInput: UpdateProductInput!): Product!
+  removeProduct(id: Int!): Product!
+}
+
+input CreateCustomerInput {
+  email: String!
+  name: String!
+  lastName: String!
+  phoneNumber: String!
+  locale: String!
+  elegibleCoupon: Boolean!
+  coupon: String!
+}
+
+input UpdateCustomerInput {
+  email: String
+  name: String
+  lastName: String
+  phoneNumber: String
+  locale: String
+  elegibleCoupon: Boolean
+  coupon: String
+  id: Int!
+}
+
+input CreateHubInput {
+  name: String!
+  code: String!
+  address: String!
+  addressNumber: String!
+  addressLocationLatitude: Float!
+  addressLocationLongitude: Float!
+}
+
+input UpdateHubInput {
+  name: String
+  code: String
+  address: String
+  addressNumber: String
+  addressLocationLatitude: Float
+  addressLocationLongitude: Float
+  id: Int!
+}
+
+input CreateProductInput {
+  code: String!
+  reservationType: String!
+  name: String!
+  description: String!
+}
+
+input UpdateProductInput {
+  code: String
+  reservationType: String
+  name: String
+  description: String
+  id: Int!
+}
