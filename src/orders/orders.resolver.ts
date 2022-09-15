@@ -3,6 +3,7 @@ import { OrdersService } from './orders.service'
 import { Order } from './entities/order.entity'
 import { CreateOrderInput } from './dto/create-order.input'
 import { UpdateOrderInput } from './dto/update-order.input'
+import { Prisma } from '@prisma/client'
 
 @Resolver(() => Order)
 export class OrdersResolver {
@@ -24,10 +25,10 @@ export class OrdersResolver {
     return this.ordersService.findOne(id)
   }
 
-  @Mutation(() => Order)
-  updateOrder(@Args('updateOrderInput') updateOrderInput: UpdateOrderInput) {
-    return this.ordersService.update(updateOrderInput.id, updateOrderInput)
-  }
+  // @Mutation(() => Order)
+  // updateOrder(@Args('updateOrderInput') updateOrderInput: Prisma.OrderUpdateInput) {
+  //   return this.ordersService.update(updateOrderInput.id, updateOrderInput)
+  // }
 
   @Mutation(() => Order)
   removeOrder(@Args('id', { type: () => Int }) id: number) {

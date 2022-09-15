@@ -34,8 +34,53 @@ type Product {
 }
 
 type Order {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  id: Int!
+  businessCode: OrderBusinessCode!
+  number: Int!
+  type: OrderType!
+  receptionType: OrderReceptionType!
+  status: OrderStatus!
+  requestedDate: DateTime!
+  scheduledDate: DateTime!
+  confirmedDate: DateTime!
+  channel: OrderChannel!
+  customer: Customer!
+  hub: Hub!
+  products: [Product!]!
+}
+
+enum OrderBusinessCode {
+  PIZZA
+}
+
+enum OrderType {
+  ASAP
+  SCHEDULED
+}
+
+enum OrderReceptionType {
+  PICKUP
+  HUB
+  DELIVER
+  IN_HUB
+}
+
+enum OrderStatus {
+  CONFIRMED
+  IN_PROCESS
+  IN_DELIVERY
+  CANCEL
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+enum OrderChannel {
+  IOS
+  HUB
+  ANDROID
 }
 
 type Query {
@@ -60,7 +105,6 @@ type Mutation {
   updateProduct(updateProductInput: UpdateProductInput!): Product!
   removeProduct(id: Int!): Product!
   createOrder(createOrderInput: CreateOrderInput!): Order!
-  updateOrder(updateOrderInput: UpdateOrderInput!): Order!
   removeOrder(id: Int!): Order!
 }
 
@@ -120,12 +164,16 @@ input UpdateProductInput {
 }
 
 input CreateOrderInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
-input UpdateOrderInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
+  businessCode: OrderBusinessCode!
+  number: Int!
+  type: OrderType!
+  receptionType: OrderReceptionType!
+  status: OrderStatus!
+  requestedDate: DateTime!
+  scheduledDate: DateTime!
+  confirmedDate: DateTime!
+  channel: OrderChannel!
+  customer: Int!
+  hub: Int!
+  products: [Int!]!
 }

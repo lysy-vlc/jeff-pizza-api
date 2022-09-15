@@ -12,7 +12,7 @@ datasource db {
 
 model Customer {
   email          String  @unique
-  id             Int     @id @default(autoincrement())
+  id             Int     @id @unique @default(autoincrement())
   name           String
   lastName       String
   phoneNumber    String
@@ -23,7 +23,7 @@ model Customer {
 }
 
 model Hub {
-  id                       Int     @id @default(autoincrement())
+  id                       Int     @id @unique @default(autoincrement())
   name                     String
   code                     String  @unique
   address                  String
@@ -34,7 +34,7 @@ model Hub {
 }
 
 model Product {
-  id              Int    @id @default(autoincrement())
+  id              Int    @id @unique @default(autoincrement())
   code            String @unique
   reservationType String
   name            String
@@ -44,7 +44,7 @@ model Product {
 }
 
 enum OrderBusinessCode {
-  Pizza
+  PIZZA
 }
 
 enum OrderType {
@@ -73,12 +73,12 @@ enum OrderChannel {
 }
 
 model Order {
-  id            Int                @id @default(autoincrement())
+  id            Int                @id @unique @default(autoincrement())
   businessCode  OrderBusinessCode
   number        Int
   type          OrderType
   receptionType OrderReceptionType
-  status        OrderReceptionType
+  status        OrderStatus
   requestedDate DateTime
   scheduledDate DateTime
   confirmedDate DateTime
