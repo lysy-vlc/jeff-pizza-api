@@ -105,6 +105,8 @@ type Mutation {
   updateProduct(updateProductInput: UpdateProductInput!): Product!
   removeProduct(id: Int!): Product!
   createOrder(createOrderInput: CreateOrderInput!): Order!
+  updateOrder(updateOrderInput: UpdateOrderInput!): Order!
+  updateOrderStatus(updateOrderStatusInput: UpdateOrderStatusInput!): Order!
   removeOrder(id: Int!): Order!
 }
 
@@ -165,7 +167,6 @@ input UpdateProductInput {
 
 input CreateOrderInput {
   businessCode: OrderBusinessCode!
-  number: Int!
   type: OrderType!
   receptionType: OrderReceptionType!
   status: OrderStatus!
@@ -176,4 +177,29 @@ input CreateOrderInput {
   customer: Int!
   hub: Int!
   products: [Int!]!
+}
+
+input UpdateOrderInput {
+  businessCode: OrderBusinessCode
+  type: OrderType
+  receptionType: OrderReceptionType
+  status: OrderStatus
+  requestedDate: DateTime
+  scheduledDate: DateTime
+  confirmedDate: DateTime
+  channel: OrderChannel
+  customer: Int
+  hub: Int
+  products: [Int!]
+  id: Int!
+}
+
+input UpdateOrderStatusInput {
+  id: Int!
+  status: String!
+}
+
+type Subscription {
+  orderCreated: Order!
+  orderStatusChanged: Order!
 }

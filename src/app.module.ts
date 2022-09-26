@@ -23,6 +23,9 @@ import { OrdersModule } from './orders/orders.module'
             locations: [ DirectiveLocation.FIELD_DEFINITION ]
           })
         ]
+      },
+      subscriptions: {
+        'graphql-ws': true
       }
     }),
     HubsModule,

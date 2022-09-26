@@ -39,8 +39,7 @@ model Product {
   reservationType String
   name            String
   description     String
-  Order           Order? @relation(fields: [orderId], references: [id])
-  orderId         Int?
+  orders          Order[]
 }
 
 enum OrderBusinessCode {
@@ -75,7 +74,7 @@ enum OrderChannel {
 model Order {
   id            Int                @id @unique @default(autoincrement())
   businessCode  OrderBusinessCode
-  number        Int
+  number        Int                @default(autoincrement())
   type          OrderType
   receptionType OrderReceptionType
   status        OrderStatus

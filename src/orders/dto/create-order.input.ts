@@ -25,9 +25,6 @@ export class CreateOrderInput {
   @Field(() => OrderBusinessCode)
   businessCode: OrderBusinessCode
 
-  @Field(() => Int)
-  number: number
-
   @Field(() => OrderType)
   type: OrderType
 
